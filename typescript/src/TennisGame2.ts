@@ -10,7 +10,7 @@ export class TennisGame2 implements TennisGame {
 
   getScore(): string {
     let score: string = '';
-    if (this.P1point === this.P2point && this.P1point < 4) {
+    if (this.isGameTied() && this.P1point < 4) {
       if (this.P1point === 0)
         score = 'Love';
       if (this.P1point === 1)
@@ -19,7 +19,7 @@ export class TennisGame2 implements TennisGame {
         score = 'Thirty';
       score += '-All';
     }
-    if (this.P1point === this.P2point && this.P1point >= 3)
+    if (this.isGameTied() && this.P1point >= 3)
       score = 'Deuce';
 
     if (this.P1point > 0 && this.P2point === 0) {
@@ -83,6 +83,10 @@ export class TennisGame2 implements TennisGame {
       score = 'Win for player2';
     }
     return score;
+  }
+
+  private isGameTied() {
+    return this.P1point === this.P2point;
   }
 
   SetP1Score(score: number): void {
