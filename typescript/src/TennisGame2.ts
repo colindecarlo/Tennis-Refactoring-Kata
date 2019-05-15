@@ -113,22 +113,6 @@ export class TennisGame2 implements TennisGame {
     return this.P1point === this.P2point;
   }
 
-  SetP1Score(score: number): void {
-
-    for (let i = 0; i < score; i++) {
-      this.P1Score();
-    }
-
-  }
-
-  SetP2Score(score: number): void {
-
-    for (let i = 0; i < score; i++) {
-      this.P2Score();
-    }
-
-  }
-
   P1Score(): void {
     this.P1point++;
   }
