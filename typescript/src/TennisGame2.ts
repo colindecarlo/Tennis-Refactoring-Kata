@@ -48,18 +48,22 @@ export class TennisGame2 implements TennisGame {
 
   private pointsToWords(player2points: number, player1points: number, player2res: string, player1res: string, score: string) {
     if (player2points > player1points && player2points < 4) {
-      if (player2points === 2)
-        player2res = 'Thirty';
-      if (player2points === 3)
-        player2res = 'Forty';
-      if (player1points === 1)
-        player1res = 'Fifteen';
-      if (player1points === 2)
-        player1res = 'Thirty';
-        
-      return player1res + '-' + player2res;
+      return `${this.gameScoreToWord(player1points)}-${this.gameScoreToWord(player2points)}`;
     }
     return score;
+  }
+
+  private gameScoreToWord(score: number) {
+    switch (score) {
+      case 0:
+        return 'Love';
+      case 1:
+        return 'Fifteen';
+      case 2:
+        return 'Thirty';
+      case 3:
+        return 'Forty';
+    }
   }
 
   private playerOneLeading(score: string) {
