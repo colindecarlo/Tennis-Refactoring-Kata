@@ -60,7 +60,8 @@ export class TennisGame2 implements TennisGame {
         player1res = 'Fifteen';
       if (player1points === 2)
         player1res = 'Thirty';
-      score = player1res + '-' + player2res;
+        
+      return player1res + '-' + player2res;
     }
     return score;
   }
