@@ -8,6 +8,13 @@ export class TennisGame2 implements TennisGame {
   P1res: string = '';
   P2res: string = '';
 
+  wonPoint(player: string): void {
+    if (player === 'player1')
+      this.P1point++;
+    else
+      this.P2point++;
+  }
+
   getScore(): string {
     let score: string = '';
     score = this.getScoreForTiedGame(score);
@@ -111,12 +118,5 @@ export class TennisGame2 implements TennisGame {
 
   private isGameTied() {
     return this.P1point === this.P2point;
-  }
-
-  wonPoint(player: string): void {
-    if (player === 'player1')
-      this.P1point++;
-    else
-      this.P2point++;
   }
 }
