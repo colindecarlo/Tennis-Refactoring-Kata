@@ -43,11 +43,7 @@ export class TennisGame2 implements TennisGame {
   }
 
   private playerTwoLeading(score: string) {
-    const player2points = this.P2point;
-    const player1points = this.P1point;
-    let player1res = this.P1res;
-    let player2res = this.P2res;
-    return this.pointsToWords(player2points, player1points, player2res, player1res, score);
+    return this.pointsToWords(this.P2point, this.P1point, this.P2res, this.P1res, score);
   }
 
   private pointsToWords(player2points: number, player1points: number, player2res: string, player1res: string, score: string) {
