@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc --declaration -p tsconfig.json",
     "watch": "tsc -p tsconfig.json -w",
-    "test": "TS_NODE_FAST=true mocha --compilers ts:./node_modules/ts-node/register 'tests/**/*.test.ts'",
+    "test": "jest --coverage",
     "test:watch": "TS_NODE_FAST=true mocha --reporter min  --compilers ts:./node_modules/ts-node/register --watch 'tests/**/*.test.ts'",
     "clean": "rm -rf build"
   },
@@ -20,5 +20,10 @@
     "ts-node": "^3.0.4",
     "tslib": "^1.7.1",
     "typescript": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2"
   }
 }
