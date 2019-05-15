@@ -43,12 +43,15 @@ export class TennisGame2 implements TennisGame {
   }
 
   private playerTwoLeading(score: string) {
-    return this.pointsToWords(this.P2point, this.P1point, this.P2res, this.P1res, score);
+    if (this.P2point > this.P1point && this.P2point < 4) {
+      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
+    }
+    return score;
   }
 
-  private pointsToWords(player2points: number, player1points: number, player2res: string, player1res: string, score: string) {
-    if (player2points > player1points && player2points < 4) {
-      return `${this.gameScoreToWord(player1points)}-${this.gameScoreToWord(player2points)}`;
+  private playerOneLeading(score: string) {
+    if (this.P1point > this.P2point && this.P1point < 4) {
+      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
     return score;
   }
@@ -64,21 +67,6 @@ export class TennisGame2 implements TennisGame {
       case 3:
         return 'Forty';
     }
-  }
-
-  private playerOneLeading(score: string) {
-    if (this.P1point > this.P2point && this.P1point < 4) {
-      if (this.P1point === 2)
-        this.P1res = 'Thirty';
-      if (this.P1point === 3)
-        this.P1res = 'Forty';
-      if (this.P2point === 1)
-        this.P2res = 'Fifteen';
-      if (this.P2point === 2)
-        this.P2res = 'Thirty';
-      score = this.P1res + '-' + this.P2res;
-    }
-    return score;
   }
 
   private playerTwoAhead(score: string) {
