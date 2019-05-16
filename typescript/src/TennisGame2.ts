@@ -38,10 +38,10 @@ export class TennisGame2 implements TennisGame {
     }
 
     if (playerOneHasWon) {
-      score = 'Win for player1';
+      return 'Win for player1';
     }
     if (playerTwoHasWon) {
-      score = 'Win for player2';
+      return 'Win for player2';
     }
     return score;
   }
