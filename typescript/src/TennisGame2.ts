@@ -18,14 +18,15 @@ export class TennisGame2 implements TennisGame {
   getScore(): string {
     let score: string = '';
     score = this.getScoreForTiedGame(score);
-
-    const aPlayerIsInTheLead = this.P1point > this.P2point || this.P2point > this.P1point;
     
+    const aPlayerIsInTheLead = this.P1point > this.P2point || this.P2point > this.P1point;
+    const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
+
     if (aPlayerIsInTheLead) {
       score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
 
-    if (this.P1point > this.P2point && this.P2point >= 3) {
+    if (playerOneHasAdvantage) {
       score = 'Advantage player1';
     }
 
