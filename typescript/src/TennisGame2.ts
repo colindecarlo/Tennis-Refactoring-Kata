@@ -43,14 +43,14 @@ export class TennisGame2 implements TennisGame {
   }
 
   private playerTwoLeading(score: string) {
-    if (this.P2point > this.P1point && this.P2point < 4) {
+    if (this.P2point > this.P1point) {
       return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
     return score;
   }
 
   private playerOneLeading(score: string) {
-    if (this.P1point > this.P2point && this.P1point < 4) {
+    if (this.P1point > this.P2point) {
       return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
     return score;
