@@ -19,9 +19,6 @@ export class TennisGame2 implements TennisGame {
     let score: string = '';
     score = this.getScoreForTiedGame(score);
 
-    score = this.playerOneAhead(score);
-    score = this.playerTwoAhead(score);
-
     score = this.playerOneLeading(score);
     score = this.playerTwoLeading(score);
 
@@ -54,14 +51,6 @@ export class TennisGame2 implements TennisGame {
       case 3:
         return 'Forty';
     }
-  }
-
-  private playerTwoAhead(score: string) {
-    return this.playerTwoLeading(score);
-  }
-
-  private playerOneAhead(score: string) {
-    return this.playerOneLeading(score);
   }
 
   private playerTwoLeading(score: string) {
