@@ -15,9 +15,7 @@ export class TennisGame2 implements TennisGame {
       this.P2point++;
   }
 
-  getScore(): string {
-    let score: string = '';
-    
+  getScore(): string {    
     const aPlayerIsInTheLead = this.P1point > this.P2point || this.P2point > this.P1point;
     const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
     const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
