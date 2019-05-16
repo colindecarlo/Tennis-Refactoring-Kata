@@ -19,7 +19,9 @@ export class TennisGame2 implements TennisGame {
     let score: string = '';
     score = this.getScoreForTiedGame(score);
 
-    if (this.P1point > this.P2point || this.P2point > this.P1point) {
+    const aPlayerIsInTheLead = this.P1point > this.P2point || this.P2point > this.P1point;
+    
+    if (aPlayerIsInTheLead) {
       score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
 
