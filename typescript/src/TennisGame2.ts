@@ -19,8 +19,13 @@ export class TennisGame2 implements TennisGame {
     let score: string = '';
     score = this.getScoreForTiedGame(score);
 
-    score = this.playerOneLeading(score);
-    score = this.playerTwoLeading(score);
+    if (this.P1point > this.P2point) {
+      score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
+    }
+
+    if (this.P2point > this.P1point) {
+      score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
+    }
 
     if (this.P1point > this.P2point && this.P2point >= 3) {
       score = 'Advantage player1';
@@ -51,20 +56,6 @@ export class TennisGame2 implements TennisGame {
       case 3:
         return 'Forty';
     }
-  }
-
-  private playerTwoLeading(score: string) {
-    if (this.P2point > this.P1point) {
-      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
-    }
-    return score;
-  }
-
-  private playerOneLeading(score: string) {
-    if (this.P1point > this.P2point) {
-      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
-    }
-    return score;
   }
 
   private getScoreForTiedGame(score: string) {
