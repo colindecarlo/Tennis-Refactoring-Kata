@@ -18,10 +18,11 @@ export class TennisGame2 implements TennisGame {
   getScore(): string {
     const leadingPlayer = this.P1point > this.P2point ? 'player1' : 'player2';
     const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.P2point - this.P1point) >= 2;
-    const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
-    const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
     const playerTwoHasWon = this.P2point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
     const playerOneHasWon = this.P1point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
+
+    const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
+    const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
     const gameIsTied = this.P1point === this.P2point;
 
     if (gameIsTied) {
@@ -31,11 +32,7 @@ export class TennisGame2 implements TennisGame {
       return `${this.gameScoreToWord(this.P1point)}-All`;
     }
 
-    if (playerOneHasWon) {
-      return `Win for ${leadingPlayer}`;
-    }
-
-    if (playerTwoHasWon) {
+    if (playerOneHasWon || playerTwoHasWon) {
       return `Win for ${leadingPlayer}`;
     }
 
