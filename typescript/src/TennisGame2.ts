@@ -26,7 +26,7 @@ export class TennisGame2 implements TennisGame {
     const gameIsTied = this.isGameTied();
     
     if (gameIsTied) {
-      score = this.getScoreForTiedGame(score);
+      return this.getScoreForTiedGame(score);
     }
 
     if (playerOneHasWon) {
@@ -47,8 +47,6 @@ export class TennisGame2 implements TennisGame {
     if (aPlayerIsInTheLead) {
       return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
-
-    return score;
   }
 
 
