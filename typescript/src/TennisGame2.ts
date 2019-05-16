@@ -31,17 +31,17 @@ export class TennisGame2 implements TennisGame {
     if (playerTwoHasWon) {
       return 'Win for player2';
     }
-    
+
     if (aPlayerIsInTheLead) {
       score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
 
     if (playerOneHasAdvantage) {
-      score = 'Advantage player1';
+      return 'Advantage player1';
     }
 
     if (playerTwoHasAdvantage) {
-      score = 'Advantage player2';
+      return 'Advantage player2';
     }
 
     return score;
