@@ -64,19 +64,11 @@ export class TennisGame2 implements TennisGame {
   }
 
   private getScoreForTiedGame(score: string) {
-    if (this.isGameTied() && this.P1point < 4) {
-      if (this.P1point === 0)
-        score = this.gameScoreToWord(this.P1point);
-      if (this.P1point === 1)
-        score = this.gameScoreToWord(this.P1point);
-      if (this.P1point === 2)
-        score = this.gameScoreToWord(this.P1point);
-      score += '-All';
+    if (this.P1point >= 3) {
+      return 'Deuce';
     }
-    if (this.isGameTied() && this.P1point >= 3) {
-      score = 'Deuce';
-    }
-    return score;
+
+    return `${this.gameScoreToWord(this.P1point)}-All`;
   }
 
   private isGameTied() {
