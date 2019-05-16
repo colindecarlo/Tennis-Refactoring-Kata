@@ -18,8 +18,8 @@ export class TennisGame2 implements TennisGame {
   getScore(): string {
     const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
     const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
-    const playerTwoHasWon = this.P2point >= 4 && this.P1point >= 0 && (this.P2point - this.P1point) >= 2;
-    const playerOneHasWon = this.P1point >= 4 && this.P2point >= 0 && (this.P1point - this.P2point) >= 2;
+    const playerTwoHasWon = this.P2point >= 4 && (this.P2point - this.P1point) >= 2;
+    const playerOneHasWon = this.P1point >= 4 && (this.P1point - this.P2point) >= 2;
     const gameIsTied = this.P1point === this.P2point;
 
     if (gameIsTied) {
@@ -32,7 +32,7 @@ export class TennisGame2 implements TennisGame {
     if (playerOneHasWon) {
       return 'Win for player1';
     }
-    
+
     if (playerTwoHasWon) {
       return 'Win for player2';
     }
