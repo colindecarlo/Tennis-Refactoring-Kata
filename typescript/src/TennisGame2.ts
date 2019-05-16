@@ -23,10 +23,13 @@ export class TennisGame2 implements TennisGame {
     const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
     const playerTwoHasWon = this.P2point >= 4 && this.P1point >= 0 && (this.P2point - this.P1point) >= 2;
     const playerOneHasWon = this.P1point >= 4 && this.P2point >= 0 && (this.P1point - this.P2point) >= 2;
-    const gameIsTied = this.isGameTied();
+    const gameIsTied = this.P1point === this.P2point;
     
     if (gameIsTied) {
-      return this.getScoreForTiedGame(score);
+      if (this.P1point >= 3) {
+        return 'Deuce';
+      }
+      return `${this.gameScoreToWord(this.P1point)}-All`;
     }
 
     if (playerOneHasWon) {
@@ -61,17 +64,5 @@ export class TennisGame2 implements TennisGame {
       case 3:
         return 'Forty';
     }
-  }
-
-  private getScoreForTiedGame(score: string) {
-    if (this.P1point >= 3) {
-      return 'Deuce';
-    }
-
-    return `${this.gameScoreToWord(this.P1point)}-All`;
-  }
-
-  private isGameTied() {
-    return this.P1point === this.P2point;
   }
 }
