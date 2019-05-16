@@ -32,6 +32,7 @@ export class TennisGame2 implements TennisGame {
     if (playerOneHasWon) {
       return 'Win for player1';
     }
+    
     if (playerTwoHasWon) {
       return 'Win for player2';
     }
