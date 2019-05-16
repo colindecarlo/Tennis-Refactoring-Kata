@@ -17,11 +17,11 @@ export class TennisGame2 implements TennisGame {
 
   getScore(): string {
     const leadingPlayer = this.P1point > this.P2point ? 'player1' : 'player2';
-    const aPlayerIsAheadByMoreThanOnePoint = (this.P2point - this.P1point) >= 2;
+    const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.P2point - this.P1point) >= 2;
     const playerOneHasAdvantage = this.P1point > this.P2point && this.P2point >= 3
     const playerTwoHasAdvantage = this.P2point > this.P1point && this.P1point >= 3;
     const playerTwoHasWon = this.P2point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
-    const playerOneHasWon = this.P1point >= 4 && (this.P1point - this.P2point) >= 2;
+    const playerOneHasWon = this.P1point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
     const gameIsTied = this.P1point === this.P2point;
 
     if (gameIsTied) {
