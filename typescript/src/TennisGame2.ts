@@ -42,19 +42,6 @@ export class TennisGame2 implements TennisGame {
     return score;
   }
 
-  private playerTwoLeading(score: string) {
-    if (this.P2point > this.P1point) {
-      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
-    }
-    return score;
-  }
-
-  private playerOneLeading(score: string) {
-    if (this.P1point > this.P2point) {
-      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
-    }
-    return score;
-  }
 
   private gameScoreToWord(score: number) {
     switch (score) {
@@ -70,15 +57,23 @@ export class TennisGame2 implements TennisGame {
   }
 
   private playerTwoAhead(score: string) {
-    if (this.P2point > 0 && this.P1point === 0) {
-      score = this.gameScoreToWord(this.P1point) + '-' + this.gameScoreToWord(this.P2point);
+    return this.playerTwoLeading(score);
+  }
+
+  private playerOneAhead(score: string) {
+    return this.playerOneLeading(score);
+  }
+
+  private playerTwoLeading(score: string) {
+    if (this.P2point > this.P1point) {
+      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
     return score;
   }
 
-  private playerOneAhead(score: string) {
-    if (this.P1point > 0 && this.P2point === 0) {
-      score = this.gameScoreToWord(this.P1point) + '-' + this.gameScoreToWord(this.P2point);
+  private playerOneLeading(score: string) {
+    if (this.P1point > this.P2point) {
+      return `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
     return score;
   }
