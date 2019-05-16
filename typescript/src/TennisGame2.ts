@@ -25,6 +25,13 @@ export class TennisGame2 implements TennisGame {
     const playerTwoHasWon = this.P2point >= 4 && this.P1point >= 0 && (this.P2point - this.P1point) >= 2;
     const playerOneHasWon = this.P1point >= 4 && this.P2point >= 0 && (this.P1point - this.P2point) >= 2;
 
+    if (playerOneHasWon) {
+      return 'Win for player1';
+    }
+    if (playerTwoHasWon) {
+      return 'Win for player2';
+    }
+    
     if (aPlayerIsInTheLead) {
       score = `${this.gameScoreToWord(this.P1point)}-${this.gameScoreToWord(this.P2point)}`;
     }
@@ -37,12 +44,6 @@ export class TennisGame2 implements TennisGame {
       score = 'Advantage player2';
     }
 
-    if (playerOneHasWon) {
-      return 'Win for player1';
-    }
-    if (playerTwoHasWon) {
-      return 'Win for player2';
-    }
     return score;
   }
 
