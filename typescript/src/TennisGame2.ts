@@ -28,16 +28,16 @@ export class TennisGame2 implements TennisGame {
   }
 
   getScore(): string {
-    const leadingPlayer = this.player1.points > this.P2point ? this.player1 : this.player2;
-    const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.P2point - this.player1.points) >= 2;
+    const leadingPlayer = this.player1.points > this.player2.points ? this.player1 : this.player2;
+    const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.player2.points - this.player1.points) >= 2;
 
-    const playerTwoHasWon = this.P2point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
+    const playerTwoHasWon = this.player2.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
     const playerOneHasWon = this.player1.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
 
-    const playerOneHasAdvantage = this.player1.points > this.P2point && this.P2point >= 3
-    const playerTwoHasAdvantage = this.P2point > this.player1.points && this.player1.points >= 3;
+    const playerOneHasAdvantage = this.player1.points > this.player2.points && this.player2.points >= 3
+    const playerTwoHasAdvantage = this.player2.points > this.player1.points && this.player1.points >= 3;
 
-    const gameIsTied = this.player1.points === this.P2point;
+    const gameIsTied = this.player1.points === this.player2.points;
 
     if (gameIsTied) {
       if (this.player1.points >= 3) {
@@ -54,7 +54,7 @@ export class TennisGame2 implements TennisGame {
       return `Advantage ${leadingPlayer.name}`;
     }
 
-    return `${this.gameScoreToWord(this.player1.points)}-${this.gameScoreToWord(this.P2point)}`;
+    return `${this.gameScoreToWord(this.player1.points)}-${this.gameScoreToWord(this.player2.points)}`;
   }
 
 
