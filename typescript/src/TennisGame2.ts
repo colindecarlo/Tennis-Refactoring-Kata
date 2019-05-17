@@ -58,7 +58,7 @@ class Player {
     return this.points === opponent.points;
   }
 
-  hasWon(opponent: Player): boolean {
+  hasDefeated(opponent: Player): boolean {
     return this.points >= 4 && this.points - opponent.points >= 2;
   }
 
@@ -83,7 +83,7 @@ class PlayerHasWon implements Scenario {
   }
 
   applies() {
-    return this.player.hasWon(this.opponent);
+    return this.player.hasDefeated(this.opponent);
   }
 
   score() {
