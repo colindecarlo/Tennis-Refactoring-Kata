@@ -2,11 +2,6 @@ import { TennisGame } from './TennisGame';
 
 
 export class TennisGame2 implements TennisGame {
-  P1point: number = 0;
-  P2point: number = 0;
-
-  P1res: string = '';
-  P2res: string = '';
 
   player1: Player;
   player2: Player;
@@ -18,23 +13,21 @@ export class TennisGame2 implements TennisGame {
 
   wonPoint(player: string): void {
     if (player === 'player1') {
-      this.P1point++;
       this.player1.wonPoint();
     }
     else {
-      this.P2point++;
       this.player2.wonPoint();
     }
   }
 
   getScore(): string {
-    const leadingPlayer = this.player1.points > this.player2.points ? this.player1 : this.player2;
+    const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
     const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.player2.points - this.player1.points) >= 2;
 
     const playerTwoHasWon = this.player2.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
     const playerOneHasWon = this.player1.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
 
-    const playerOneHasAdvantage = this.player1.points > this.player2.points && this.player2.points >= 3
+    const playerOneHasAdvantage = this.player1.isLeading(this.player2) && this.player2.points >= 3
     const playerTwoHasAdvantage = this.player2.points > this.player1.points && this.player1.points >= 3;
 
     const gameIsTied = this.player1.points === this.player2.points;
@@ -82,5 +75,9 @@ class Player {
 
   wonPoint() {
     this.points++;
+  }
+
+  isLeading(opponent: Player): boolean {
+    return this.points > opponent.points;
   }
 }
