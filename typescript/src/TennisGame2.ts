@@ -32,9 +32,9 @@ export class TennisGame2 implements TennisGame {
     const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
 
     
-    const playerOneHasWon = this.player1.hasWon(this.player2);
-    if (playerOneHasWon) {
-      return `Win for ${leadingPlayer.name}`;
+    const hasPlayerOneWon = new GameWasWon(this.player1, this.player2);
+    if (hasPlayerOneWon.applies()) {
+      return hasPlayerOneWon.score();
     }
 
     const playerTwoHasWon = this.player2.hasWon(this.player1);
