@@ -1,4 +1,10 @@
 import { TennisGame } from './TennisGame';
+import { Player } from './Player';
+import { Scenario } from './Scenario';
+import { PlayerHasWon } from './PlayerHasWon';
+import { PlayerHasAdvantage } from './PlayerHasAdvantage';
+import { TieGame } from './TieGame';
+import { RegularPlay } from './RegularPlay';
 
 
 export class TennisGame2 implements TennisGame {
@@ -31,122 +37,5 @@ export class TennisGame2 implements TennisGame {
     ];
 
     return scenarios.find(scenario => scenario.applies()).score();
-  }
-}
-
-class Player {
-  points: number = 0;
-  name: string;
-
-  constructor(name: string) {
-    this.name = name;
-  }
-
-  get score(): string {
-    return ['Love', 'Fifteen', 'Thirty', 'Forty'][this.points];
-  }
-
-  wonPoint() {
-    this.points++;
-  }
-
-  isLeading(opponent: Player): boolean {
-    return this.points > opponent.points;
-  }
-
-  isTiedWith(opponent: Player): boolean {
-    return this.points === opponent.points;
-  }
-
-  hasDefeated(opponent: Player): boolean {
-    return this.points >= 4 && this.points - opponent.points >= 2;
-  }
-
-  hasAdvantageOver(opponent: Player): boolean {
-    return this.isLeading(opponent) && opponent.points >= 3
-  }
-}
-
-interface Scenario {
-  applies(): boolean;
-  score(): string;
-}
-
-class PlayerHasWon implements Scenario {
-
-  player: Player;
-  opponent: Player;
-
-  constructor(player: Player, opponent: Player) {
-    this.player = player;
-    this.opponent = opponent;
-  }
-
-  applies() {
-    return this.player.hasDefeated(this.opponent);
-  }
-
-  score() {
-    return `Win for ${this.player.name}`;
-  }
-}
-
-class PlayerHasAdvantage implements Scenario {
-
-  player: Player;
-  opponent: Player;
-
-  constructor(player: Player, opponent: Player) {
-    this.player = player;
-    this.opponent = opponent;
-  }
-
-  applies() {
-    return this.player.hasAdvantageOver(this.opponent);
-  }
-
-  score() {
-    return `Advantage ${this.player.name}`;
-  }
-}
-
-class TieGame implements Scenario {
-
-  player: Player;
-  opponent: Player;
-
-  constructor(player: Player, opponent: Player) {
-    this.player = player;
-    this.opponent = opponent;
-  }
-
-  applies() {
-    return this.player.isTiedWith(this.opponent);
-  }
-
-  score() {
-    if (this.player.points >= 3) {
-      return 'Deuce';
-    }
-    return `${this.player.score}-All`;
-  }
-}
-
-class RegularPlay implements Scenario {
-
-  player: Player;
-  opponent: Player;
-
-  constructor(player: Player, opponent: Player) {
-    this.player = player;
-    this.opponent = opponent;
-  }
-
-  applies() {
-    return true;
-  }
-
-  score() {
-    return `${this.player.score}-${this.opponent.score}`;
   }
 }
