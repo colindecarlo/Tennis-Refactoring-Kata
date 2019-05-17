@@ -147,11 +147,6 @@ class RegularPlay implements Scenario {
   }
 
   score() {
-    return `${this.gameScoreToWord(this.player.points)}-${this.gameScoreToWord(this.opponent.points)}`;
-  }
-
-  private gameScoreToWord(score: number) {
-    return ['Love', 'Fifteen', 'Thirty', 'Forty'][score];
-
+    return `${this.player.score}-${this.opponent.score}`;
   }
 }
