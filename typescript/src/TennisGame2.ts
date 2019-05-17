@@ -30,9 +30,7 @@ export class TennisGame2 implements TennisGame {
     const playerOneHasAdvantage = this.player1.isLeading(this.player2) && this.player2.points >= 3
     const playerTwoHasAdvantage = this.player2.isLeading(this.player1) && this.player1.points >= 3;
 
-    const gameIsTied = this.player1.points === this.player2.points;
-
-    if (gameIsTied) {
+    if (this.player1.isTied(this.player2)) {
       if (this.player1.points >= 3) {
         return 'Deuce';
       }
@@ -79,5 +77,9 @@ class Player {
 
   isLeading(opponent: Player): boolean {
     return this.points > opponent.points;
+  }
+
+  isTied(opponent: Player): boolean {
+    return this.points === opponent.points;
   }
 }
