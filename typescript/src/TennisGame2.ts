@@ -31,9 +31,14 @@ export class TennisGame2 implements TennisGame {
 
     const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
 
-    const playerTwoHasWon = this.player2.hasWon(this.player1);
+    
     const playerOneHasWon = this.player1.hasWon(this.player2);
-    if (playerOneHasWon || playerTwoHasWon) {
+    if (playerOneHasWon) {
+      return `Win for ${leadingPlayer.name}`;
+    }
+
+    const playerTwoHasWon = this.player2.hasWon(this.player1);
+    if (playerTwoHasWon) {
       return `Win for ${leadingPlayer.name}`;
     }
 
@@ -87,5 +92,24 @@ class Player {
 
   hasAdvantage(opponent: Player): boolean {
     return this.isLeading(opponent) && opponent.points >= 3
+  }
+}
+
+class GameWasWon {
+
+  player: Player;
+  opponent: Player;
+
+  constructor(player: Player, opponent: Player) {
+    this.player = player;
+    this.opponent = opponent;
+  }
+
+  applies() {
+    return this.player.hasWon(this.opponent);
+  }
+
+  score() {
+    return `Win for ${this.player.name}`;
   }
 }
