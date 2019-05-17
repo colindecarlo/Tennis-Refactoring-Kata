@@ -68,7 +68,7 @@ interface Scenario {
   score(): string;
 }
 
-class PlayerHasWon implements Scenario{
+class PlayerHasWon implements Scenario {
 
   player: Player;
   opponent: Player;
@@ -87,7 +87,7 @@ class PlayerHasWon implements Scenario{
   }
 }
 
-class PlayerHasAdvantage implements Scenario{
+class PlayerHasAdvantage implements Scenario {
 
   player: Player;
   opponent: Player;
@@ -106,7 +106,7 @@ class PlayerHasAdvantage implements Scenario{
   }
 }
 
-class TieGame implements Scenario{
+class TieGame implements Scenario {
 
   player: Player;
   opponent: Player;
@@ -128,20 +128,12 @@ class TieGame implements Scenario{
   }
 
   private gameScoreToWord(score: number) {
-    switch (score) {
-      case 0:
-        return 'Love';
-      case 1:
-        return 'Fifteen';
-      case 2:
-        return 'Thirty';
-      case 3:
-        return 'Forty';
-    }
+    return ['Love', 'Fifteen', 'Thirty', 'Forty'][score];
+
   }
 }
 
-class RegularPlay implements Scenario{
+class RegularPlay implements Scenario {
 
   player: Player;
   opponent: Player;
@@ -160,15 +152,7 @@ class RegularPlay implements Scenario{
   }
 
   private gameScoreToWord(score: number) {
-    switch (score) {
-      case 0:
-        return 'Love';
-      case 1:
-        return 'Fifteen';
-      case 2:
-        return 'Thirty';
-      case 3:
-        return 'Forty';
-    }
+    return ['Love', 'Fifteen', 'Thirty', 'Forty'][score];
+
   }
 }
