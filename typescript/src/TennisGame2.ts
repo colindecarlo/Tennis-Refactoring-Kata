@@ -42,6 +42,10 @@ class Player {
     this.name = name;
   }
 
+  get score(): string {
+    return ['Love', 'Fifteen', 'Thirty', 'Forty'][this.points];
+  }
+
   wonPoint() {
     this.points++;
   }
@@ -124,12 +128,7 @@ class TieGame implements Scenario {
     if (this.player.points >= 3) {
       return 'Deuce';
     }
-    return `${this.gameScoreToWord(this.player.points)}-All`;
-  }
-
-  private gameScoreToWord(score: number) {
-    return ['Love', 'Fifteen', 'Thirty', 'Forty'][score];
-
+    return `${this.player.score}-All`;
   }
 }
 
