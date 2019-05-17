@@ -23,7 +23,7 @@ export class TennisGame2 implements TennisGame {
     }
     else {
       this.P2point++;
-      this.player1.wonPoint();
+      this.player2.wonPoint();
     }
   }
 
