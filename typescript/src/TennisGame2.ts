@@ -47,21 +47,7 @@ export class TennisGame2 implements TennisGame {
       return playerTwoHasAdvantage.score();
     }
 
-    return `${this.gameScoreToWord(this.player1.points)}-${this.gameScoreToWord(this.player2.points)}`;
-  }
-
-
-  private gameScoreToWord(score: number) {
-    switch (score) {
-      case 0:
-        return 'Love';
-      case 1:
-        return 'Fifteen';
-      case 2:
-        return 'Thirty';
-      case 3:
-        return 'Forty';
-    }
+    return new RegularPlay(this.player1, this.player2).score();
   }
 }
 
