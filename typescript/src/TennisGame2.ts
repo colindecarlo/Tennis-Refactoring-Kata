@@ -62,7 +62,7 @@ class Player {
     return this.points >= 4 && this.points - opponent.points >= 2;
   }
 
-  hasAdvantage(opponent: Player): boolean {
+  hasAdvantageOver(opponent: Player): boolean {
     return this.isLeading(opponent) && opponent.points >= 3
   }
 }
@@ -102,7 +102,7 @@ class PlayerHasAdvantage implements Scenario {
   }
 
   applies() {
-    return this.player.hasAdvantage(this.opponent);
+    return this.player.hasAdvantageOver(this.opponent);
   }
 
   score() {
