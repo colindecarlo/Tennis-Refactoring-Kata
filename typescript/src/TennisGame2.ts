@@ -28,7 +28,7 @@ export class TennisGame2 implements TennisGame {
     const playerOneHasWon = this.player1.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
 
     const playerOneHasAdvantage = this.player1.isLeading(this.player2) && this.player2.points >= 3
-    const playerTwoHasAdvantage = this.player2.points > this.player1.points && this.player1.points >= 3;
+    const playerTwoHasAdvantage = this.player2.isLeading(this.player1) && this.player1.points >= 3;
 
     const gameIsTied = this.player1.points === this.player2.points;
 
