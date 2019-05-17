@@ -27,9 +27,6 @@ export class TennisGame2 implements TennisGame {
       return gameIsTied.score();
     }
 
-    const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
-
-    
     const hasPlayerOneWon = new PlayerHasWon(this.player1, this.player2);
     if (hasPlayerOneWon.applies()) {
       return hasPlayerOneWon.score();
