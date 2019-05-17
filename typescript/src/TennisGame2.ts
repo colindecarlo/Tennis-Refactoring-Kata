@@ -54,7 +54,7 @@ class Player {
     return this.points > opponent.points;
   }
 
-  isTied(opponent: Player): boolean {
+  isTiedWith(opponent: Player): boolean {
     return this.points === opponent.points;
   }
 
@@ -121,7 +121,7 @@ class TieGame implements Scenario {
   }
 
   applies() {
-    return this.player.isTied(this.opponent);
+    return this.player.isTiedWith(this.opponent);
   }
 
   score() {
