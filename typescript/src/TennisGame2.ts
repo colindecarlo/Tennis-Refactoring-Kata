@@ -136,3 +136,38 @@ class PlayerHasAdvantage {
     return `Advantage ${this.player.name}`;
   }
 }
+
+class TieGame {
+
+  player: Player;
+  opponent: Player;
+
+  constructor(player: Player, opponent: Player) {
+    this.player = player;
+    this.opponent = opponent;
+  }
+
+  applies() {
+    return this.player.isTied(this.opponent);
+  }
+
+  score() {
+    if (this.player.points >= 3) {
+      return 'Deuce';
+    }
+    return `${this.gameScoreToWord(this.player.points)}-All`;
+  }
+
+  private gameScoreToWord(score: number) {
+    switch (score) {
+      case 0:
+        return 'Love';
+      case 1:
+        return 'Fifteen';
+      case 2:
+        return 'Thirty';
+      case 3:
+        return 'Forty';
+    }
+  }
+}
