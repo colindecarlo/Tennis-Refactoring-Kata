@@ -22,10 +22,9 @@ export class TennisGame2 implements TennisGame {
 
   getScore(): string {
     const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
-    const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.player2.points - this.player1.points) >= 2;
 
-    const playerTwoHasWon = this.player2.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
-    const playerOneHasWon = this.player1.points >= 4 && aPlayerIsAheadByMoreThanOnePoint;
+    const playerTwoHasWon = this.player2.hasWon(this.player1);
+    const playerOneHasWon = this.player1.hasWon(this.player2);
 
     const playerOneHasAdvantage = this.player1.isLeading(this.player2) && this.player2.points >= 3
     const playerTwoHasAdvantage = this.player2.isLeading(this.player1) && this.player1.points >= 3;
@@ -81,5 +80,9 @@ class Player {
 
   isTied(opponent: Player): boolean {
     return this.points === opponent.points;
+  }
+
+  hasWon(opponent: Player): boolean {
+    return this.points >= 4 && this.points - opponent.points >= 2;
   }
 }
