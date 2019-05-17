@@ -42,14 +42,14 @@ export class TennisGame2 implements TennisGame {
       return hasPlayerTwoWon.score();
     }
 
-    const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
-    if (playerOneHasAdvantage) {
-      return `Advantage ${leadingPlayer.name}`;
+    const playerOneHasAdvantage = new PlayerHasAdvantage(this.player1, this.player2);
+    if (playerOneHasAdvantage.applies()) {
+      return playerOneHasAdvantage.score();
     }
     
-    const playerTwoHasAdvantage = this.player2.hasAdvantage(this.player1);
-    if (playerTwoHasAdvantage) {
-      return `Advantage ${leadingPlayer.name}`;
+    const playerTwoHasAdvantage = new PlayerHasAdvantage(this.player2, this.player1);
+    if (playerTwoHasAdvantage.applies()) {
+      return playerTwoHasAdvantage.score();
     }
 
     return `${this.gameScoreToWord(this.player1.points)}-${this.gameScoreToWord(this.player2.points)}`;
