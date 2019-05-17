@@ -22,11 +22,9 @@ export class TennisGame2 implements TennisGame {
   }
 
   getScore(): string {
-    if (this.player1.isTied(this.player2)) {
-      if (this.player1.points >= 3) {
-        return 'Deuce';
-      }
-      return `${this.gameScoreToWord(this.player1.points)}-All`;
+    const gameIsTied = new TieGame(this.player1, this.player2);
+    if (gameIsTied.applies()) {
+      return gameIsTied.score();
     }
 
     const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
