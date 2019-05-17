@@ -22,32 +22,16 @@ export class TennisGame2 implements TennisGame {
   }
 
   getScore(): string {
-    const gameIsTied = new TieGame(this.player1, this.player2);
-    if (gameIsTied.applies()) {
-      return gameIsTied.score();
-    }
+    const scenarios: Scenario[] = [
+      new TieGame(this.player1, this.player2),
+      new PlayerHasWon(this.player1, this.player2),
+      new PlayerHasWon(this.player2, this.player1),
+      new PlayerHasAdvantage(this.player1, this.player2),
+      new PlayerHasAdvantage(this.player2, this.player1),
+      new RegularPlay(this.player1, this.player2)
+    ];
 
-    const hasPlayerOneWon = new PlayerHasWon(this.player1, this.player2);
-    if (hasPlayerOneWon.applies()) {
-      return hasPlayerOneWon.score();
-    }
-
-    const hasPlayerTwoWon = new PlayerHasWon(this.player2, this.player1);
-    if (hasPlayerTwoWon.applies()) {
-      return hasPlayerTwoWon.score();
-    }
-
-    const playerOneHasAdvantage = new PlayerHasAdvantage(this.player1, this.player2);
-    if (playerOneHasAdvantage.applies()) {
-      return playerOneHasAdvantage.score();
-    }
-    
-    const playerTwoHasAdvantage = new PlayerHasAdvantage(this.player2, this.player1);
-    if (playerTwoHasAdvantage.applies()) {
-      return playerTwoHasAdvantage.score();
-    }
-
-    return new RegularPlay(this.player1, this.player2).score();
+    return scenarios.find(scenario => scenario.applies()).score();
   }
 }
 
@@ -80,7 +64,12 @@ class Player {
   }
 }
 
-class PlayerHasWon {
+interface Scenario {
+  applies(): boolean;
+  score(): string;
+}
+
+class PlayerHasWon implements Scenario{
 
   player: Player;
   opponent: Player;
@@ -99,7 +88,7 @@ class PlayerHasWon {
   }
 }
 
-class PlayerHasAdvantage {
+class PlayerHasAdvantage implements Scenario{
 
   player: Player;
   opponent: Player;
@@ -118,7 +107,7 @@ class PlayerHasAdvantage {
   }
 }
 
-class TieGame {
+class TieGame implements Scenario{
 
   player: Player;
   opponent: Player;
@@ -153,7 +142,7 @@ class TieGame {
   }
 }
 
-class RegularPlay {
+class RegularPlay implements Scenario{
 
   player: Player;
   opponent: Player;
