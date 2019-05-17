@@ -32,14 +32,14 @@ export class TennisGame2 implements TennisGame {
     const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
 
     
-    const hasPlayerOneWon = new GameWasWon(this.player1, this.player2);
+    const hasPlayerOneWon = new PlayerHasWon(this.player1, this.player2);
     if (hasPlayerOneWon.applies()) {
       return hasPlayerOneWon.score();
     }
 
-    const playerTwoHasWon = this.player2.hasWon(this.player1);
-    if (playerTwoHasWon) {
-      return `Win for ${leadingPlayer.name}`;
+    const hasPlayerTwoWon = new PlayerHasWon(this.player2, this.player1);
+    if (hasPlayerTwoWon.applies()) {
+      return hasPlayerTwoWon.score();
     }
 
     const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
@@ -95,7 +95,7 @@ class Player {
   }
 }
 
-class GameWasWon {
+class PlayerHasWon {
 
   player: Player;
   opponent: Player;
