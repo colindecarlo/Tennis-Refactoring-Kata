@@ -22,14 +22,6 @@ export class TennisGame2 implements TennisGame {
   }
 
   getScore(): string {
-    const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
-
-    const playerTwoHasWon = this.player2.hasWon(this.player1);
-    const playerOneHasWon = this.player1.hasWon(this.player2);
-
-    const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
-    const playerTwoHasAdvantage = this.player2.hasAdvantage(this.player1);
-
     if (this.player1.isTied(this.player2)) {
       if (this.player1.points >= 3) {
         return 'Deuce';
@@ -37,10 +29,16 @@ export class TennisGame2 implements TennisGame {
       return `${this.gameScoreToWord(this.player1.points)}-All`;
     }
 
+    const leadingPlayer = this.player1.isLeading(this.player2) ? this.player1 : this.player2;
+
+    const playerTwoHasWon = this.player2.hasWon(this.player1);
+    const playerOneHasWon = this.player1.hasWon(this.player2);
     if (playerOneHasWon || playerTwoHasWon) {
       return `Win for ${leadingPlayer.name}`;
     }
 
+    const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
+    const playerTwoHasAdvantage = this.player2.hasAdvantage(this.player1);
     if (playerOneHasAdvantage || playerTwoHasAdvantage) {
       return `Advantage ${leadingPlayer.name}`;
     }
