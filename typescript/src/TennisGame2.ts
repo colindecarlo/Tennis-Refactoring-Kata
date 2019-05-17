@@ -113,3 +113,22 @@ class PlayerHasWon {
     return `Win for ${this.player.name}`;
   }
 }
+
+class PlayerHasAdvantage {
+
+  player: Player;
+  opponent: Player;
+
+  constructor(player: Player, opponent: Player) {
+    this.player = player;
+    this.opponent = opponent;
+  }
+
+  applies() {
+    return this.player.hasAdvantage(this.opponent);
+  }
+
+  score() {
+    return `Advantage ${this.player.name}`;
+  }
+}
