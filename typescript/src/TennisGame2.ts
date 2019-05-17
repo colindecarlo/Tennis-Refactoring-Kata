@@ -44,7 +44,11 @@ export class TennisGame2 implements TennisGame {
 
     const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
     const playerTwoHasAdvantage = this.player2.hasAdvantage(this.player1);
-    if (playerOneHasAdvantage || playerTwoHasAdvantage) {
+    if (playerOneHasAdvantage) {
+      return `Advantage ${leadingPlayer.name}`;
+    }
+
+    if (playerTwoHasAdvantage) {
       return `Advantage ${leadingPlayer.name}`;
     }
 
