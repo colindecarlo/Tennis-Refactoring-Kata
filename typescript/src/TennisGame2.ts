@@ -1,5 +1,4 @@
 import { TennisGame } from './TennisGame';
-import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 
 export class TennisGame2 implements TennisGame {
