@@ -1,4 +1,5 @@
 import { TennisGame } from './TennisGame';
+import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 
 export class TennisGame2 implements TennisGame {
@@ -26,8 +27,8 @@ export class TennisGame2 implements TennisGame {
     const playerTwoHasWon = this.player2.hasWon(this.player1);
     const playerOneHasWon = this.player1.hasWon(this.player2);
 
-    const playerOneHasAdvantage = this.player1.isLeading(this.player2) && this.player2.points >= 3
-    const playerTwoHasAdvantage = this.player2.isLeading(this.player1) && this.player1.points >= 3;
+    const playerOneHasAdvantage = this.player1.hasAdvantage(this.player2);
+    const playerTwoHasAdvantage = this.player2.hasAdvantage(this.player1);
 
     if (this.player1.isTied(this.player2)) {
       if (this.player1.points >= 3) {
@@ -84,5 +85,9 @@ class Player {
 
   hasWon(opponent: Player): boolean {
     return this.points >= 4 && this.points - opponent.points >= 2;
+  }
+
+  hasAdvantage(opponent: Player): boolean {
+    return this.isLeading(opponent) && opponent.points >= 3
   }
 }
