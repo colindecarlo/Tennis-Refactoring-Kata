@@ -8,6 +8,14 @@ export class TennisGame2 implements TennisGame {
   P1res: string = '';
   P2res: string = '';
 
+  player1: Player;
+  player2: Player;
+
+  constructor(player1Name: string, player2Name: string) {
+    this.player1 = new Player(player1Name);
+    this.player2 = new Player(player2Name);
+  }
+
   wonPoint(player: string): void {
     if (player === 'player1')
       this.P1point++;
@@ -18,6 +26,7 @@ export class TennisGame2 implements TennisGame {
   getScore(): string {
     const leadingPlayer = this.P1point > this.P2point ? 'player1' : 'player2';
     const aPlayerIsAheadByMoreThanOnePoint = Math.abs(this.P2point - this.P1point) >= 2;
+
     const playerTwoHasWon = this.P2point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
     const playerOneHasWon = this.P1point >= 4 && aPlayerIsAheadByMoreThanOnePoint;
 
@@ -56,5 +65,14 @@ export class TennisGame2 implements TennisGame {
       case 3:
         return 'Forty';
     }
+  }
+}
+
+class Player {
+  points: number = 0;
+  name: string;
+
+  constructor(name: string) {
+    this.name = name;
   }
 }
